@@ -3,7 +3,7 @@ from django.db import models
 class Player(models.Model):
     first_name = models.CharField(max_length=60)
     last_name = models.CharField(max_length=60)
-    dob = models.DateField(null=True, blank=True)  # datum rođenja
+    dob = models.DateField(null=True, blank=True)
     position = models.CharField(max_length=30, blank=True)
 
     def __str__(self):
