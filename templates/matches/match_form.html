@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Nova utakmica{% endblock %}
+{% block content %}
+<h1>Nova utakmica</h1>
+<form method="post">
+  {% csrf_token %}
+  <p><label>Datum</label><input type="date" name="date" id="id_date"></p>
+  <p><label>Natjecanje</label>{{ form.competition }}</p>
+  <p><label>Protivnik</label>{{ form.opponent }}</p>
+  <p><label>Doma/Vani</label>{{ form.home_away }}</p>
+  <p><label>Rezultat</label>{{ form.result }}</p>
+  <button type="submit">Spremi</button>
+  <a href="{% url 'matches:list' %}">Odustani</a>
+</form>
+{% endblock %}

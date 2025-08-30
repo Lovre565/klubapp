@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Novi nastup{% endblock %}
+{% block content %}
+<h1>Novi nastup</h1>
+<form method="post">
+  {% csrf_token %}
+  <p><label>Igrač</label>{{ form.player }}</p>
+  <p><label>Minute</label>{{ form.minutes }}</p>
+  <p><label>Golovi</label>{{ form.goals }}</p>
+  <p><label>Žuti</label>{{ form.yellow }}</p>
+  <p><label>Crveni</label>{{ form.red }}</p>
+  <button type="submit">Spremi</button>
+  <a href="{% url 'matches:list' %}">Odustani</a>
+</form>
+{% endblock %}

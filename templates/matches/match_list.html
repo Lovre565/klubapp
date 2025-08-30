@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Utakmice{% endblock %}
+{% block content %}
+<h1>Utakmice</h1>
+<p><a href="{% url 'matches:create' %}">+ Nova utakmica</a></p>
+
+{% if matches %}
+<table>
+  <thead><tr><th>Datum</th><th>Protivnik</th><th>Natjecanje</th><th>Doma/Vani</th><th>Rezultat</th><th>Akcije</th></tr></thead>
+  <tbody>
+  {% for m in matches %}
+    <tr>
+      <td>{{ m.date|date:"d.m.Y" }}</td>
+      <td>{{ m.opponent }}</td>
+      <td>{{ m.competition }}</td>
+      <td>{{ m.get_home_away_display }}</td>
+      <td>{{ m.result }}</td>
+      <td><a href="{% url 'matches:appearance_create' m.pk %}">+ Nastupi</a></td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p>Nema utakmica.</p>
+{% endif %}
+{% endblock %}

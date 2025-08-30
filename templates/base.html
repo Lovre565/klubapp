@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="hr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>{% block title %}App{% endblock %}</title>
+  <style>
+    body{font-family:system-ui,sans-serif;margin:20px}
+    nav a{margin-right:12px}
+    table{border-collapse:collapse}
+    th,td{padding:6px 10px;border:1px solid #ddd}
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="/players/">Igrači</a>
+    <a href="/matches/">Utakmice</a>
+    <a href="/import/players/">Uvoz igrača</a>
+
+  </nav>
+  <hr/>
+  {% block content %}{% endblock %}
+</body>
+</html>

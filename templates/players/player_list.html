@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Igrači{% endblock %}
+{% block content %}
+<h1>Igrači</h1>
+<p><a href="{% url 'players:create' %}">+ Dodaj igrača</a></p>
+
+{% if players %}
+<table>
+  <thead><tr><th>Ime</th><th>Pozicija</th><th>Rođen</th></tr></thead>
+  <tbody>
+    {% for p in players %}
+    <tr>
+      <td>{{ p.first_name }} {{ p.last_name }}</td>
+      <td>{{ p.position|default:"-" }}</td>
+      <td>{{ p.dob|date:"d.m.Y" }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}<p>Nema unosa.</p>{% endif %}
+{% endblock %}

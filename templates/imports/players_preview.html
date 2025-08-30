@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}Pregled uvoza{% endblock %}
+{% block content %}
+<h1>Pregled uvoza</h1>
+
+{% if ok %}
+<h3>Valjani redovi ({{ ok|length }})</h3>
+<table>
+  <thead><tr><th>Red</th><th>Ime</th><th>Prezime</th><th>Datum rođenja</th><th>Pozicija</th></tr></thead>
+  <tbody>
+    {% for r in ok %}
+    <tr>
+      <td>{{ r.rown um }}</td>
+      <td>{{ r.data.first_name }}</td>
+      <td>{{ r.data.last_name }}</td>
+      <td>{{ r.data.dob }}</td>
+      <td>{{ r.data.position }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p>Nema valjanih redova.</p>
+{% endif %}
+
+{% if bad %}
+<h3>Greške ({{ bad|length }})</h3>
+<table>
+  <thead><tr><th>Red</th><th>Greške</th></tr></thead>
+  <tbody>
+    {% for r in bad %}
+    <tr>
+      <td>{{ r.rown um }}</td>
+      <td>{{ r.errors|join:", " }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endif %}
+
+{% if ok %}
+<form method="post" action="{% url 'imports:players_commit' %}">
+  {% csrf_token %}
+  {{ form.dry_run }}   {# hidden False #}
+  {{ form.payload }}   {# hidden JSON #}
+  <button type="submit">Potvrdi uvoz (commit)</button>
+</form>
+{% endif %}
+
+<p><a href="{% url 'imports:players_upload' %}">← Natrag (drugi CSV)</a></p>
+{% endblock %}

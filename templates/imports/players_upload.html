@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Uvoz igrača (CSV){% endblock %}
+{% block content %}
+<h1>Uvoz igrača (CSV)</h1>
+<p>Očekuje se CSV s kolonama: <code>first_name,last_name,dob,position</code></p>
+<ul>
+  <li><b>dob</b> smije biti u formatu <code>YYYY-MM-DD</code> ili <code>DD.MM.YYYY</code></li>
+</ul>
+
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  {{ form.file }}
+  <button type="submit">Suhi test (dry-run)</button>
+</form>
+
+<p><a href="/players/">← Natrag na igrače</a></p>
+{% endblock %}
